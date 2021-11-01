@@ -170,6 +170,101 @@ OC 0.7.2 changed the Default value for SecureBootModel to j137 to x86legacy than
 Now your SBM is ready to boot 10.13 to 10.15 
  
 </details> 
+<details>
+<summary><strong>Adding the EFI folder to the USB</strong></summary>
+<br /> 
+Now you will need to copy the EFI folder to the root of your USB Installer in order to boot from it 
+<br /> <br /> 
+	
+You can consult [OpenCore Guide - Creating the USB](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/) to get some instructions on how to do this with your OS
+ 
+</details> 
+
+<details>
+<summary><strong>Installing macOS</strong></summary>
+<br /> 
+Boot from the USB by pressing F12 on the Thinkpad BIOS and choose your USB
+
+- You will see the OpenCore Boot Picker and choose to boot from your installation media
+
+- After that select Disk Utility and format your HDD/SSD in APFS
+
+- Install as normal
+	
+You can consult [OpenCore Guide - Installation Process](https://dortania.github.io/OpenCore-Install-Guide/installation/installation-process.html) to get some instructions if you need them.
+</details> 
+
+## POST INSTALL
+Different things that you might need to do after macOS is correctly installed
+
+<details>
+<summary><strong>macOS 12 Monterey - HD 4000 system patch</strong></summary>
+<br /> 
+Apple dropped the HD 4000 iGPU with macOS 12. If you dont install this you won't have any kind of graphics acceleration and your macOS 12 experience will be completely miserable
+
+- Download [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases/tag/0.3.1) TUI version offline or online
+
+- Run OLCP
+	
+- Choose volume root patch and follow instructions
+	
+- Reboot
+	
+If everything went right, now you would be able to control the brightness and enjoy fully Metal accelerated UI
+</details> 
+
+
+<details>
+<summary><strong>Boot without USB</strong></summary>
+<br /> 
+
+- Download [MountEFI](https://github.com/corpnewt/MountEFI)
+
+- Choose your macOS drive and it should be mounted in Finder 
+	
+- Copy your EFI folder to the root of the EFI partition on your macOS drive
+	
+- Reboot and disconnect your USB drive
+	
+- Boot from disk
+	
+</details> 
+
+<details>
+<summary><strong>Disable verbose boot</strong></summary>
+<br /> 
+If you managed to boot without any issues you can disable the verbose boot to get a clean boot experience 
+
+- Open the config.plist
+
+- Go to NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82
+	
+- Find boot-args and delete  `-v`
+	
+- Reboot
+	
+</details> 
+
+## Credits
+
+Thanks to:
+
+* Acidanthera (OpenCore, VirtualSMC, Lilu, WhateverGreen and a lot more)
+* Dortania (Opencore Install Guide, Opencore Legacy Patcher)
+* OpenIntelWireless (Airportitlwm)
+* [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) (X230 ACPI fixes)
+* [5T33Z0](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore) (T530 ACPI fixes)
+* [zhen-zen](https://github.com/zhen-zen/YogaSMC) (YogaSMC)
+
+
+
+
+
+
+
+
+
+
  
 
 
