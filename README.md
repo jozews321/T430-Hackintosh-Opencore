@@ -15,7 +15,7 @@ This guide will provide a EFI folder configured to install macOS 10.13 to 12 on 
 
 |:warning: This guide assumes prior knowledge on how to do basic Hackintosh stuff |
 |:--------------------------------------------------------------------|
-If you are new to this i suggest to go to [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) first
+If you are new to this i suggest you to go to [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) first
 There will be references to the linked guide throught this proccess for those that are new to this
 
 ## REQUIREMENTS
@@ -54,6 +54,7 @@ Do a pull request to add more Hardware configs to this list
 | Bluetooth           | Integrated Broadcom BCM20702 Bluetooth 4.2    |
   
 </details>
+
 
 ## INSTALL GUIDE
 
@@ -249,12 +250,14 @@ If you managed to boot without any issues you can disable the verbose boot to ge
 
 Thanks to:
 
+* [Apple](https://www.apple.com) (macOS)
 * Acidanthera (OpenCore, VirtualSMC, Lilu, WhateverGreen and a lot more)
 * Dortania (Opencore Install Guide, Opencore Legacy Patcher)
 * OpenIntelWireless (Airportitlwm)
 * [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) (X230 ACPI fixes)
 * [5T33Z0](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore) (T530 ACPI fixes)
 * [zhen-zen](https://github.com/zhen-zen/YogaSMC) (YogaSMC)
+
 
 
 
