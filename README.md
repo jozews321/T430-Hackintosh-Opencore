@@ -7,7 +7,7 @@
 [![11](https://img.shields.io/badge/macOS-11-red.svg)]()
 [![12](https://img.shields.io/badge/macOS-12-blueviolet.svg)]()
 [![download](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/jozews321/T430-Hackintosh-Opencore/releases/latest)
-<img align="left" src="/resources/thinkpad-T430-EOL_79fd729b-5a2f-4f6f-b54b-ad10c1796a84.png.webp" alt="Lenovo Thinkpad T430" width="300">
+<img align="left" src="/resources/T430-new.png" alt="Lenovo Thinkpad T430" width="300">
 <img align="right" src="/resources/homepage.png" alt="Opencore" width="200">
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 ## SUMMARY 
