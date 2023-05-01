@@ -43,14 +43,14 @@ Do a pull request to add more Hardware configs to this list
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T430                          |
 | BIOS Version        | 2.77, unlocked with 1vyRain                   |
-| Processor           | Intel Core i5 3320M                           |
-| Memory              | 8GB DDR3 1600MHz in Dual-Channel              |
+| Processor           | Intel Core i7 3610QM                          |
+| Memory              | 16GB DDR3 1600MHz in Dual-Channel             |
 | SSD                 | Intel 520 Series SSD 180GB                    |
 | Graphics            | Intel HD Graphics 4000                        |
 | Display             | 15.6" 1600x900                                |
 | Audio               | Realtek ALC269VC                              |
 | Ethernet            | Intel 82579LM Gigabit Network                 |
-| WIFI                | Intel Centrino Ultimate N-6300                |
+| WIFI                | Intel Dual Band Wireless-AC 7260              |
 | Bluetooth           | Integrated Broadcom BCM20702 Bluetooth 4.2    |
   
 </details>
