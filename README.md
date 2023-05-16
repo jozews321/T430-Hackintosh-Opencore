@@ -217,6 +217,15 @@ If everything went right, now you would be able to control the brightness and en
 </details> 
 
 <details>
+<summary><strong>Optimizing CPU power management</strong></summary>
+<br /> 
+Follow this guide(Don't skip or your cpu will be locked at minimum or base clock and everything will be very slow):
+https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management
+
+	
+</details> 
+
+<details>
 <summary><strong>Disable verbose boot</strong></summary>
 <br /> 
 If you managed to boot without any issues you can disable the verbose boot to get a clean boot experience 
