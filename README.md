@@ -1,11 +1,12 @@
 # Thinkpad T430 - Hackintosh - OpenCore
 [![T430](https://img.shields.io/badge/ThinkPad-T430-blueviolet.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T430.pdf)
-[![OC](https://img.shields.io/badge/OpenCore-0.7.9-informational.svg)](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.4)
-[![10.13](https://img.shields.io/badge/macOS-10.13-yellow.svg)]()
+[![OC](https://img.shields.io/badge/OpenCore-0.8.2-informational.svg)](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.2)
+[![10.13](https://img.shields.io/badge/macOS-10.13-yellowgreen.svg)]()
 [![10.14](https://img.shields.io/badge/macOS-10.14-blue.svg)]()
 [![10.15](https://img.shields.io/badge/macOS-10.15-9cf.svg)]()
 [![11](https://img.shields.io/badge/macOS-11-red.svg)]()
 [![12](https://img.shields.io/badge/macOS-12-blueviolet.svg)]()
+[![13](https://img.shields.io/badge/macOS-13-yellow.svg)]()
 [![download](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/jozews321/T430-Hackintosh-Opencore/releases/latest)
 <img align="left" src="/resources/T430-new.png" alt="Lenovo Thinkpad T430" width="300">
 <img align="right" src="/resources/homepage.png" alt="Opencore" width="200">
@@ -20,13 +21,13 @@ There will be references to the linked guide throught this proccess for those th
 
 ## REQUIREMENTS
 - Lenovo Thinkpad T430 (T430s is similar enough to work with this config, but i can't verify)
-- Intel Core i3 3110m or better (Celeron and Pentium CPUs are not supported)
+- Intel Core i3 3110M or better (Celeron and Pentium CPUs are not supported)
 - Integrated Intel HD4000 graphics (NVIDIA discrete GPUs are not supported)
 - At least 4GB RAM 
 - Stock Intel Centrino WiFI card (optional)
 - Internal Broadcom BCM20702 Bluetooth 4.2 card (optional)
 - Integrated Fingerprint reader and WWAN card are not supported
-- Dual Booting is discouraged in this guide as there is many possibilities to cover here
+- Dual Booting is discouraged in this guide as there is many boot scenarios to cover properly here
 - SSD (HDDs suck)
 - USB drive (at least 16gb for full install or 2gb for internet recovery)
 
@@ -57,7 +58,14 @@ Do a pull request to add more Hardware configs to this list
 
 
 ## INSTALL GUIDE
-
+<details>
+<summary><strong>Getting the EFI ready</strong></summary>	
+Download the latest release [T430 EFI](https://github.com/jozews321/T430-Hackintosh-Opencore/releases/latest)
+	
+- If you are going to install macOS 11 to 13 you must use the install only config.plist, remove the "[InstallOnly]" so it reads "config.plist" (Don't skip this step)
+- If you are installing 10.13 to 10.15 it's not necessary to use the install only config, so use the post install one, remove the the "[PostInstall]" so it reads "config.plist"
+	
+</details>
 <details>
 <summary><strong>BIOS Settings</strong></summary>
 
@@ -108,12 +116,43 @@ Now go to [OpenCore Guide - Creating the USB](https://dortania.github.io/OpenCor
 </details>
 
 <details>
-<summary><strong>Generate SMBIOS serial numbers</strong></summary>
-<br />
-In this step you will generate the Serial, MLB, UUID and ROM to the config.plist (you will need to have ProperTree installed)
+<summary><strong>Adding the EFI folder to the USB</strong></summary>
+<br /> 
+Now you will need to copy the EFI folder to the root of your USB Installer in order to boot from it 
+<br /> <br /> 
+	
+You can consult [OpenCore Guide - Creating the USB](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/) to get some instructions on how to do this with your OS
+ 
+</details> 
 
-- Download the latest release [T430 EFI](https://github.com/jozews321/T430-Hackintosh-Opencore/releases/latest)
-  <br /> <br /> 
+<details>
+<summary><strong>Installing macOS</strong></summary>
+<br /> 
+Boot from the USB by pressing F12 on the Thinkpad BIOS and choose your USB
+
+- You will see the OpenCore Boot Picker and choose to boot from your installation media
+
+- After that select Disk Utility and format your HDD/SSD in APFS
+
+- If running the internet installer connect an ethernet cable right now or connect WIFI or use an Android phone to tether via USB	
+	
+- Install as normal
+	
+You can consult [OpenCore Guide - Installation Process](https://dortania.github.io/OpenCore-Install-Guide/installation/installation-process.html) to get some instructions if you need them.
+</details> 
+
+## POST INSTALL
+Follow the next steps carefully to get a fully working system 
+
+<details>
+<summary><strong>Switching to Post Install config and generating SMBIOS serial</strong></summary>
+<br />
+After macOS is installed you will need to switch to using the post install config.plist
+	
+- Go to EFI/OC and delete the install only config.plist and remove the "[PostInstall]" so it reads only "config.plist".
+	
+Now it's time to generate the Serial, MLB, UUID and ROM to the config.plist (you will need to have ProperTree installed)
+
 - Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS/)
   <br /> <br /> 
 - Open config.plist with ProperTree in the EFI folder
@@ -124,7 +163,7 @@ In this step you will generate the Serial, MLB, UUID and ROM to the config.plist
   <br /> <br /> 
 - Choose 3 to generate some new serials
   <br /> <br /> 
-- Write MacBookPro12,1
+- Write MacBookPro10,1
   <br /> <br /> 
 - You will get something like this
   <br /> <br />  
@@ -145,69 +184,15 @@ In this step you will generate the Serial, MLB, UUID and ROM to the config.plist
 </details> 
 
 <details>
-<summary><strong>macOS 12 Monterey - specific config</strong></summary>
-<br />
-Apple dropped support for the HD 4000 graphics so we need to get the config.plist ready for a system patch that we will get later in the post install
-
-- Open config.plist
-
-- Go to Misc/Security, find the entry SecureBootModel and set it to `Disabled`
-
-- Go to NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82, find csr-active-config and set it to `030A0000`
-  
-Now your SIP config is ready for the System patch 
- 
-</details> 
-
-<details>
-<summary><strong>macOS 10.13 to 10.15 - specific config</strong></summary>
+<summary><strong>macOS 12 and 13 - HD 4000 system patch</strong></summary>
 <br /> 
-OC 0.7.2 changed the Default value for SecureBootModel to j137 to x86legacy thanks to this we won't be able to boot versions prior to macOS 11, but we can change it manually 
+Apple dropped the HD 4000 iGPU with macOS 12. If you dont install this you won't have any kind of graphics acceleration and your macOS 12 and 13 experience will be completely miserable
 
-- Open config.plist
-
-- Go to Misc/Security, find the entry SecureBootModel and set it to `j137`
-  
-Now your SBM is ready to boot 10.13 to 10.15 
- 
-</details> 
-<details>
-<summary><strong>Adding the EFI folder to the USB</strong></summary>
-<br /> 
-Now you will need to copy the EFI folder to the root of your USB Installer in order to boot from it 
-<br /> <br /> 
-	
-You can consult [OpenCore Guide - Creating the USB](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/) to get some instructions on how to do this with your OS
- 
-</details> 
-
-<details>
-<summary><strong>Installing macOS</strong></summary>
-<br /> 
-Boot from the USB by pressing F12 on the Thinkpad BIOS and choose your USB
-
-- You will see the OpenCore Boot Picker and choose to boot from your installation media
-
-- After that select Disk Utility and format your HDD/SSD in APFS
-
-- Install as normal
-	
-You can consult [OpenCore Guide - Installation Process](https://dortania.github.io/OpenCore-Install-Guide/installation/installation-process.html) to get some instructions if you need them.
-</details> 
-
-## POST INSTALL
-Different things that you might need to do after macOS is correctly installed
-
-<details>
-<summary><strong>macOS 12 Monterey - HD 4000 system patch</strong></summary>
-<br /> 
-Apple dropped the HD 4000 iGPU with macOS 12. If you dont install this you won't have any kind of graphics acceleration and your macOS 12 experience will be completely miserable
-
-- Download [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases/tag/0.3.1) TUI version offline or online
+- Download [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases)
 
 - Run OLCP
 	
-- Choose volume root patch and follow instructions
+- Choose Post Install Root Patch and follow instructions
 	
 - Reboot
 	
@@ -251,10 +236,9 @@ If you managed to boot without any issues you can disable the verbose boot to ge
 Thanks to:
 
 * [Apple](https://www.apple.com) (macOS)
-* Acidanthera (OpenCore, VirtualSMC, Lilu, WhateverGreen and a lot more)
-* Dortania (Opencore Install Guide, Opencore Legacy Patcher)
-* OpenIntelWireless (Airportitlwm)
-* [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) (X230 ACPI fixes)
+* [Acidanthera](https://github.com/acidanthera) (OpenCore, VirtualSMC, Lilu, WhateverGreen and a lot more)
+* [Dortania](https://dortania.github.io) (Opencore Install Guide, Opencore Legacy Patcher)
+* [OpenIntelWireless](https://github.com/OpenIntelWireless/itlwm) (Airportitlwm)
 * [5T33Z0](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore) (T530 ACPI fixes)
 * [zhen-zen](https://github.com/zhen-zen/YogaSMC) (YogaSMC)
 
