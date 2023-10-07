@@ -13,7 +13,7 @@
 <img align="right" src="/resources/homepage.png" alt="Opencore" width="200">
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 ## SUMMARY 
-This guide will provide a EFI folder configured to install macOS 10.13 to 12 on the Thinkpad T430 using OpenCore Bootloader with every device working with some exceptions depending on your particular T430 model (see below)
+This guide will provide a EFI folder configured to install macOS 10.13 to 14 on the Thinkpad T430 using OpenCore Bootloader with every device working with some exceptions depending on your particular T430 model (see below)
 
 |:warning: This guide assumes prior knowledge on how to do basic Hackintosh stuff |
 |:--------------------------------------------------------------------|
@@ -30,7 +30,7 @@ There will be references to the linked guide throught this proccess for those th
 - Integrated Fingerprint reader and WWAN card are not supported
 - Dual Booting is discouraged in this guide as there is many boot scenarios to cover properly here
 - SSD (HDDs suck)
-- USB drive (at least 16gb for full install or 2gb for internet recovery)
+- USB drive (at least 16gb for full installer or 2gb for internet recovery)
 
 ## ABOUT
 The provided ACPI tables in this OC EFI folder are made using a DSDT-less method via hotpatching to increase compatibility with different BIOS versions.
@@ -62,9 +62,6 @@ Do a pull request to add more Hardware configs to this list
 <details>
 <summary><strong>Getting the EFI ready</strong></summary>	
 Download the latest release [T430 EFI](https://github.com/jozews321/T430-Hackintosh-Opencore/releases/latest)
-	
-- If you are going to install macOS 11 to 13 you must use the install only config.plist, remove the "[InstallOnly]" so it reads "config.plist" (Don't skip this step)
-- If you are installing 10.13 to 10.15 it's not necessary to use the install only config, so use the post install one, remove the the "[PostInstall]" so it reads "config.plist"
 	
 </details>
 <details>
@@ -135,7 +132,7 @@ Boot from the USB by pressing F12 on the Thinkpad BIOS and choose your USB
 
 - After that select Disk Utility and format your HDD/SSD in APFS
 
-- If running the internet installer connect an ethernet cable right now or connect WIFI or use an Android phone to tether via USB	
+- If running the internet installer connect an ethernet cable right now or connect WIFI, alternatively you can use an Android phone to tether via USB	
 	
 - Install as normal
 	
@@ -148,9 +145,6 @@ Follow the next steps carefully to get a fully working system
 <details>
 <summary><strong>Switching to Post Install config and generating SMBIOS serial</strong></summary>
 <br />
-After macOS is installed you will need to switch to using the post install config.plist
-	
-- Go to EFI/OC and delete the install only config.plist and remove the "[PostInstall]" so it reads only "config.plist".
 	
 Now it's time to generate the Serial, MLB, UUID and ROM to the config.plist (you will need to have ProperTree installed)
 
@@ -172,7 +166,7 @@ Now it's time to generate the Serial, MLB, UUID and ROM to the config.plist (you
   <br /> <br /> 
   
 - If you care about iServices you will need to try the generated serial in [Apple Coverage](https://checkcoverage.apple.com)
-  and try to get this message (use a VPN or TOR to get around the validation limits) 
+  and try to get this message (use a VPN or TOR to get around the rate limits) 
 <img src="/resources/notvalidated.png" width="600">
    <br /> <br /> 
   
@@ -185,9 +179,9 @@ Now it's time to generate the Serial, MLB, UUID and ROM to the config.plist (you
 </details> 
 
 <details>
-<summary><strong>macOS 12 and 13 - HD 4000 system patch</strong></summary>
+<summary><strong>macOS 12 to 14 - HD 4000 system patch</strong></summary>
 <br /> 
-Apple dropped the HD 4000 iGPU with macOS 12. If you dont install this you won't have any kind of graphics acceleration and your macOS 12 and 13 experience will be completely miserable
+Apple dropped the HD 4000 iGPU with macOS 12. If you dont install this you won't have any kind of graphics acceleration and your macOS 12-14 experience will be completely miserable
 
 - Download [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases)
 
