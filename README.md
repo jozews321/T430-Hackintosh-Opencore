@@ -144,7 +144,7 @@ You can consult [OpenCore Guide - Installation Process](https://dortania.github.
 Follow the next steps carefully to get a fully working system 
 
 <details>
-<summary><strong>Switching to Post Install config and generating SMBIOS serial</strong></summary>
+<summary><strong>Generating SMBIOS serial</strong></summary>
 <br />
 	
 Now it's time to generate the Serial, MLB, UUID and ROM to the config.plist (you will need to have ProperTree installed)
