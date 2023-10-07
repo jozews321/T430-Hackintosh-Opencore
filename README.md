@@ -60,8 +60,9 @@ Do a pull request to add more Hardware configs to this list
 
 ## INSTALL GUIDE
 <details>
-<summary><strong>Getting the EFI ready</strong></summary>	
-Download the latest release [T430 EFI](https://github.com/jozews321/T430-Hackintosh-Opencore/releases/latest)
+<summary><strong>Getting the EFI ready</strong></summary>
+	
+Download the latest release of the EFI 
 	
 </details>
 <details>
